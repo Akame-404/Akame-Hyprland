@@ -1,0 +1,67 @@
+# --------------------------------------------------- // Compositor & Environment
+hyprland                        # Wayland compositor (tiling WM)
+hyprpaper                       # Wallpaper utility for Hyprland
+hyprshot                        # Screenshots under Hyprland
+waybar                          # Status / navigation bar for Wayland
+nwg-look                        # GTK theme configurator for Wayland
+lxappearance-gtk3               # GTK3 theme configurator
+
+# --------------------------------------------------- // Network & Bluetooth
+networkmanager                  # Network management daemon
+network-manager-applet          # Tray applet for NetworkManager
+blueman                         # Bluetooth tray applet & manager
+
+# --------------------------------------------------- // Tools / Cyber
+aircrack-ng                     # Wireless security auditing tool (Wi-Fi cracking suite)
+
+# --------------------------------------------------- // System Monitoring & Utils
+btop                            # Resource monitor (CPU, RAM, Disk, GPU)
+htop                            # Interactive process viewer
+tree                            # Recursive directory tree viewer
+lsd                             # Modern ls replacement with icons & colors
+fastfetch                       # Fancy system information fetcher
+exiftool                        # Read/write metadata in files (images, docs, etc.)
+
+# --------------------------------------------------- // GPU Drivers (NVIDIA)
+nvidia                          # Proprietary NVIDIA driver
+nvidia-utils                    # NVIDIA utilities & OpenCL libraries
+nvidia-settings                 # NVIDIA settings GUI
+
+# --------------------------------------------------- // Portals & XDG
+xdg-desktop-portal              # XDG desktop portal (generic)
+xdg-desktop-portal-hyprland     # XDG portal backend for Hyprland
+xdg-desktop-portal-gtk          # XDG portal backend for GTK
+xdg-desktop-portal-wlr          # XDG portal backend for wlroots
+xdg-utils                       # Utilities for XDG (open URLs, apps, etc.)
+xdg-user-dirs                   # Standard user directories (Desktop, Documents…)
+jq                              # Lightweight CLI JSON parser
+
+# --------------------------------------------------- // Terminals & Shell
+kitty                           # GPU accelerated terminal emulator
+terminator                      # Terminal emulator with tabs & layout management
+zsh                             # Z shell (alternative to bash)
+
+# --------------------------------------------------- // Development Tools
+nvim                            # Neovim text editor (Vim fork)
+gdb                             # GNU debugger for C/C++ and more
+python-pip                      # Python package installer (pip)
+python-pipx                     # Isolated Python app installer (pipx)
+zip                             # Zip archive creation utility
+unzip                           # Extract zip archives (often paired with zip)
+
+# --------------------------------------------------- // Apps
+discord                         # Voice, video, and chat app
+spotify-launcher                # Spotify launcher (connects to Spotify client)
+ark                             # KDE archive manager (zip, tar, rar, etc.)
+nemo                            # Cinnamon file manager
+bitwarden                       # Open-source password manager
+
+# --------------------------------------------------- // Fonts
+ttf-firacode-nerd               # Fira Code patched with Nerd Fonts glyphs
+ttf-hack-nerd                   # Hack font patched with Nerd Fonts glyphs
+
+# --------------------------------------------------- // Qt & GTK Support
+qt5-wayland                     # Qt5 Wayland platform support
+qt6-wayland                     # Qt6 Wayland platform support
+gtk3                            # GTK3 toolkit
+gtk4                            # GTK4 toolkit

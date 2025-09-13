@@ -1,0 +1,10 @@
+    "custom/wallchange": {
+        "format": "{}",
+        "exec": "echo ; echo 󰆊 switch wallpaper",
+        "on-click": "hyprpaperselect.sh -n",
+        "on-click-right": "hyprpaperselect.sh -p",
+        "on-click-middle": "sleep 0.1 && hyprpaperselect.sh",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
+

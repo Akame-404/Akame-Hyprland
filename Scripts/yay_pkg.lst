@@ -1,0 +1,43 @@
+# --------------------------------------------------- // Containers & DevOps
+docker-desktop                  # Docker Desktop container platform
+snapd                           # Snap package manager for Linux
+
+# --------------------------------------------------- // Hacking & Reverse Engineering
+burpsuite                       # Web vulnerability scanner & intercepting proxy
+ghidra-git-bin                  # Reverse engineering suite by NSA
+metasploit                      # Penetration testing framework
+
+# --------------------------------------------------- // Editors & IDEs
+sublime-text-4                  # Proprietary code editor (Sublime Text)
+visual-studio-code-bin          # Microsoft Visual Studio Code binary (AUR)
+nvchad                          # Neovim configuration framework (NvChad)
+
+# --------------------------------------------------- // Notes & Productivity
+notion-electron-bin             # Unofficial Notion desktop client (Electron-based)
+
+# --------------------------------------------------- // Notifications & Lock
+dunst                           # Lightweight notification daemon (X11/Wayland)
+swaylock-effects-git            # Wayland screen locker with effects
+wlogout                         # Logout menu for Wayland compositors
+
+# --------------------------------------------------- // Launcher
+rofi-wayland                    # Rofi app launcher fork with Wayland support
+
+# --------------------------------------------------- // Bluetooth
+bluez                           # Bluetooth protocol stack
+bluez-utils                     # CLI utilities for BlueZ (pair, scan, etc.)
+
+# --------------------------------------------------- // Power & Brightness
+brightnessctl                   # CLI to control screen brightness
+udiskie                         # Automounter for removable drives via udisks2
+
+# --------------------------------------------------- // Theming
+nwg-look                        # GTK theme configurator
+bibata-cursor-theme             # Bibata cursor theme (modern look)
+catppuccin-gtk-theme-mocha      # Catppuccin Mocha GTK theme
+tela-circle-icon-theme-all      # Tela Circle icon theme (all variants)
+ttf-cascadia-code-nerd          # Cascadia Code font patched with Nerd Fonts
+
+# --------------------------------------------------- // System Info
+fastfetch                       # Fancy system information fetcher
+pokemon-colorscripts-git        # Pokémon ASCII art with colors in terminal

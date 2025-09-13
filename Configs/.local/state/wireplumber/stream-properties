@@ -1,0 +1,2 @@
+[stream-properties]
+Input/Audio:application.id:org.PulseAudio.pavucontrol={"volume":1.000000, "mute":false, "channelVolumes":[1.000000], "channelMap":["MONO"]}
