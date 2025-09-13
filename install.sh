@@ -39,7 +39,8 @@ for script in \
     05-pacman-config.sh \
     06-zsh.sh \
     07-configs.sh \
-    08-wallpapers.sh
+    08-wallpapers.sh \
+    09-service.sh
 do
     echo -e "\n>>> Running ${script}\n"
     bash "${scriptsDir}/${script}"

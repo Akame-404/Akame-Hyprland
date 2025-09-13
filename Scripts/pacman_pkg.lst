@@ -11,6 +11,13 @@ networkmanager                  # Network management daemon
 network-manager-applet          # Tray applet for NetworkManager
 blueman                         # Bluetooth tray applet & manager
 
+
+# --------------------------------------------------- // Secrets & Keyring
+gnome-keyring                   # Secret storage daemon for apps
+libsecret                       # API library for accessing the keyring
+seahorse                        # GUI to manage keyring passwords
+
+
 # --------------------------------------------------- // Tools / Cyber
 aircrack-ng                     # Wireless security auditing tool (Wi-Fi cracking suite)
 
