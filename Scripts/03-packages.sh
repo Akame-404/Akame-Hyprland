@@ -11,34 +11,45 @@ EOF
 
 scrDir=$(dirname "$(realpath "$0")")
 
-# Chemins vers les fichiers de liste
+# Paths to package list files
 pacmanList="${scrDir}/pacman_pkg.lst"
 aurList="${scrDir}/yay_pkg.lst"
 
 archPkg=()
 aurPkg=()
 
-# Fonction de parsing d'une liste
+# Function to parse a package list file
 parse_list() {
     local file="$1"
     local -n outputArray=$2
 
-    while read -r line; do
-        # Trim début
+    while IFS= read -r line || [ -n "$line" ]; do
+        # Remove carriage returns (\r) in case of Windows-style line endings
+        line="${line//$'\r'/}"
+
+        # Trim leading whitespace
         line="${line#"${line%%[![:space:]]*}"}"
-        # Ignore vide
+        # Trim trailing whitespace
+        line="${line%"${line##*[![:space:]]}"}"
+
+        # Skip empty lines
         [ -z "$line" ] && continue
-        # Ignore commentaire
+        # Skip lines starting with #
         [[ "$line" == \#* ]] && continue
-        # Récupère le mot avant #
+
+        # --- NEW: Cut everything after # (inline comments) ---
         pkg="${line%%#*}"
+        # Re-trim trailing spaces after cutting
         pkg="${pkg%"${pkg##*[![:space:]]}"}"
+
+        # Ignore if nothing remains after trimming
         [ -z "$pkg" ] && continue
+
         outputArray+=("$pkg")
     done < "$file"
-}
+}   # <-- function closed here
 
-# Parse la liste pacman
+# Parse pacman package list
 if [ -f "$pacmanList" ]; then
     echo ">>> Parsing pacman list..."
     pacmanPkgs=()
@@ -56,7 +67,7 @@ else
     echo "Warning: pacman_pkg.lst not found."
 fi
 
-# Parse la liste AUR
+# Parse AUR package list
 if [ -f "$aurList" ]; then
     echo ">>> Parsing AUR list..."
     aurPkgs=()
@@ -74,21 +85,29 @@ else
     echo "Warning: yay_pkg.lst not found."
 fi
 
-# Installer paquets pacman
-if [ ${#archPkg[@]} -gt 0 ]; then
-    echo ">>> Installing pacman packages..."
-    sudo pacman --noconfirm -S "${archPkg[@]}"
+# Pre-installation checks
+if ! command -v pacman &>/dev/null; then
+    echo "Error: pacman not found."
+    exit 1
 fi
 
-# Installer paquets AUR
+# Install pacman packages
+if [ ${#archPkg[@]} -gt 0 ]; then
+    echo ">>> Installing pacman packages..."
+    # Cache sudo password
+    sudo -v || true
+    sudo pacman --noconfirm --needed -S "${archPkg[@]}"
+fi
+
+# Install AUR packages
 if [ ${#aurPkg[@]} -gt 0 ]; then
     if command -v yay &>/dev/null; then
         echo ">>> Installing AUR packages..."
-        yay --noconfirm -S "${aurPkg[@]}"
+        yay --noconfirm --needed -S "${aurPkg[@]}"
     else
         echo "Error: yay not installed."
         exit 1
     fi
 fi
 
-echo -e "\nPackages installation✅"
+echo -e "\nPackages installation ✅"

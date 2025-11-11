@@ -1,53 +1,55 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="$HOME/.config/hypr/wallpapers"
-CONFIG_FILE="$HOME/.config/hypr/hyprpaper.conf"
+wallpaper_dir="$HOME/.config/hypr/wallpapers"
 roconf="$HOME/.config/rofi/styles/style.rasi"
 rasi_file="$HOME/.config/rofi/styles/style.rasi"
 
+# check if the rofi theme exists
 if [ ! -f "$roconf" ]; then
-    echo "Error: Rofi theme $roconf not found."
+    echo "error: rofi theme $roconf not found."
     exit 1
 fi
 
+# map file names to full paths
 declare -A files_map
 while IFS= read -r fullpath; do
     fname="$(basename "$fullpath")"
     files_map["$fname"]="$fullpath"
-done < <(find "$WALLPAPER_DIR" -type f)
+done < <(find "$wallpaper_dir" -type f)
 
+# exit if no wallpapers are found
 if [ ${#files_map[@]} -eq 0 ]; then
-    echo "No wallpapers found in $WALLPAPER_DIR"
+    echo "no wallpapers found in $wallpaper_dir"
     exit 1
 fi
 
-WP_NAME=$(printf '%s\n' "${!files_map[@]}" | sort | rofi \
-    -dmenu -p "Select wallpaper" \
+# rofi menu for wallpaper selection
+wp_name=$(printf '%s\n' "${!files_map[@]}" | sort | rofi \
+    -dmenu -p "select wallpaper" \
     -config "$roconf")
 
-if [ -z "$WP_NAME" ]; then
-    echo "No wallpaper selected."
+# exit if no wallpaper is selected
+if [ -z "$wp_name" ]; then
+    echo "no wallpaper selected."
     exit 0
 fi
 
-WP="${files_map[$WP_NAME]}"
-echo "Selected wallpaper: $WP"
+wp="${files_map[$wp_name]}"
+echo "selected wallpaper: $wp"
 
-{
-    echo "preload = $WP"
-    echo "wallpaper = , $WP"
-} > "$CONFIG_FILE"
-
-pkill -USR1 hyprpaper 2>/dev/null
-hyprpaper
-
-current_wallpaper=$(grep '^wallpaper' "$CONFIG_FILE" | sed 's/.*,//' | xargs)
-
-if [ -z "$current_wallpaper" ]; then
-  echo "Erreur: Aucun wallpaper trouvé dans hyprpaper.conf"
-  exit 1
+# ensure hyprpaper is running (start it if needed)
+if ! pgrep -x hyprpaper >/dev/null; then
+    hyprpaper & disown
+    # small delay so the ipc socket is ready
+    sleep 0.3
 fi
 
-sed -i -E "s#background-image:.*#background-image:            url(\"$current_wallpaper\", width);#g" "$rasi_file"
+# set wallpaper using hyprpaper ipc (no need to edit hyprpaper.conf)
+# empty monitor before the comma = apply to all monitors
+hyprctl hyprpaper reload ",$wp"
 
-notify-send "Hyprpaper" "Wallpaper set to: $WP_NAME"
+# update rofi style background to match the new wallpaper
+sed -i -E "s#background-image:.*#background-image:            url(\"$wp\", width);#g" "$rasi_file"
+
+# send notification with the wallpaper name
+notify-send "hyprpaper" "wallpaper set to $wp_name"

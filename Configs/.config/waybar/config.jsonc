@@ -14,12 +14,31 @@
 
 // positions generated based on config.ctl //
 
-	"modules-left": ["custom/padd","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd","custom/l_end","wlr/taskbar","custom/r_end"],
+	"modules-left": ["custom/padd","custom/terminal","custom/l_end","hyprland/workspaces","hyprland/window","custom/r_end","custom/padd","custom/l_end","wlr/taskbar","custom/r_end"],
 	"modules-center": ["custom/padd","custom/l_end","idle_inhibitor","clock","custom/r_end","custom/padd"],
 	"modules-right": ["custom/padd","custom/l_end","cpu","memory","custom/cpuinfo","custom/gpuinfo","custom/r_end","custom/l_end","backlight","network","pulseaudio","pulseaudio#microphone","custom/updates","custom/r_end","custom/l_end","custom/notifications","privacy","tray","battery","custom/r_end","custom/l_end","custom/wallchange","custom/power","custom/r_end","custom/padd"],
 
 
 // sourced from modules based on config.ctl //
+
+
+    "custom/terminal": {
+    "format": "  ",      // un peu d'espace avant/après l'icône
+    "tooltip": "Open Kitty",
+    "on-click": "kitty",
+    "interval": "once"
+    },
+
+
+    "custom/power": {
+        "format": "{}",
+        "rotate": 0,
+        "exec": "echo ; echo  logout",
+        "on-click": "logoutlaunch.sh 2",
+        "on-click-right": "logoutlaunch.sh 1",
+        "interval" : 86400, // once every day
+        "tooltip": true
+    },
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -400,4 +419,3 @@
     }
 
 }
-

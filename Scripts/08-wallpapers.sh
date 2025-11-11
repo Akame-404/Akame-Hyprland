@@ -12,6 +12,6 @@ EOF
 scrDir=$(dirname "$(realpath "$0")")/..
 
 if [ -d "${scrDir}/Source/Wallpapers" ]; then
-    mkdir -p ~/Pictures/Wallpapers
+    mkdir -p ~/.config/hypr/wallpapers
     cp -rf "${scrDir}/Source/Wallpapers/"* ~/.config/hypr/wallpapers/
 fi

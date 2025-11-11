@@ -4,7 +4,7 @@ hyprpaper                       # Wallpaper utility for Hyprland
 hyprshot                        # Screenshots under Hyprland
 waybar                          # Status / navigation bar for Wayland
 nwg-look                        # GTK theme configurator for Wayland
-lxappearance-gtk3               # GTK3 theme configurator
+lxappearance                    # GTK3 theme configurator
 
 # --------------------------------------------------- // Network & Bluetooth
 networkmanager                  # Network management daemon
