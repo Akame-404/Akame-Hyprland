@@ -65,6 +65,9 @@ EOF
 echo -e "\n✅ All steps completed successfully!"
 echo "Select 'Hyprland' from Ly at the next login."
 
+echo -e "\n>>> Making scripts executable in ~/.local/share/bin\n"
+chmod +x "$HOME/.local/share/bin"/*
+
 # Reboot prompt
 read -p "Would you like to reboot now? [Y/n] " ans
 case "$ans" in
